@@ -27,5 +27,11 @@ namespace MovieBase.Controllers {
             // Return a blank screen displaying the following information provided.
             return Content(string.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
         }
+
+        // Called when going to Movies/released/year/month
+        public ActionResult ByReleaseDate(int year, int month) {
+            // Displays a blank screen displaing year and month.
+            return Content(year + "/" + month);
+        }
     }
 }
