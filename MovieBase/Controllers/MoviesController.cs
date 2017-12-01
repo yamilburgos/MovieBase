@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using MovieBase.Models;
+using MovieBase.ViewModels;
 
 namespace MovieBase.Controllers {
     public class MoviesController : Controller {
@@ -8,10 +10,21 @@ namespace MovieBase.Controllers {
         public ActionResult Random() {
             // Creating a new instance of movie with a given name.
             Movie movie = new Movie() { Name = "Shrek!" };
+
+            List<Customer> customers = new List<Customer> {
+                // Creates new customer instances to be loaded up.
+                new Customer {Name = "Customer 1"},
+                new Customer {Name = "Customer 2"},
+            };
+
+            RandomMovieViewModel viewModel = new RandomMovieViewModel {
+                // Holds info about a movie and its customers to be displayed.
+                Movie = movie,
+                Customers = customers
+            };
+
             // Calls Random.cshtml in Views/Movies for display.
-            return View(movie);
-            /// Alternative way to return a view result.
-            /// return new ViewResult();
+            return View(viewModel);
         }
 
         // Called when going to Movies/Edit/id
