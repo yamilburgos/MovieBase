@@ -34,11 +34,15 @@ namespace MovieBase.Controllers {
         }
 
         // Called when going to Movies
-        public ActionResult Index(int pageIndex = 1, string sortBy = "Name") {
-            // Checks to see if this string was set to null or only white space.
-            sortBy = string.IsNullOrWhiteSpace(sortBy) ? "Name" : sortBy;
-            // Return a blank screen displaying the following information provided.
-            return Content(string.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
+        public ActionResult Index() {
+            List<Movie> movies = new List<Movie> {
+                // Creates new movie instances to be loaded up.
+                new Movie { Id = 1, Name = "Shrek" },
+                new Movie { Id = 2, Name = "Wall-e" }
+            };
+
+            // Calls Index.cshtml in Views/Movies for display with a list of movies.
+            return View(movies);    
         }
 
         // Called when going to Movies/released/year/month
