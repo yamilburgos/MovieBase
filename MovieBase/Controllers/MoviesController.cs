@@ -13,8 +13,8 @@ namespace MovieBase.Controllers {
 
             List<Customer> customers = new List<Customer> {
                 // Creates new customer instances to be loaded up.
-                new Customer {Name = "Customer 1"},
-                new Customer {Name = "Customer 2"},
+                new Customer { Name = "Customer 1" },
+                new Customer { Name = "Customer 2" },
             };
 
             RandomMovieViewModel viewModel = new RandomMovieViewModel {
