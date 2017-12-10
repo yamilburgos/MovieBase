@@ -183,10 +183,6 @@
     <Compile Include="Migrations\201712100042368_ApplyAnnotationsToCustomerName.Designer.cs">
       <DependentUpon>201712100042368_ApplyAnnotationsToCustomerName.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201712100047013_CheckingOnCustomerName.cs" />
-    <Compile Include="Migrations\201712100047013_CheckingOnCustomerName.Designer.cs">
-      <DependentUpon>201712100047013_CheckingOnCustomerName.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -273,9 +269,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712100042368_ApplyAnnotationsToCustomerName.resx">
       <DependentUpon>201712100042368_ApplyAnnotationsToCustomerName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712100047013_CheckingOnCustomerName.resx">
-      <DependentUpon>201712100047013_CheckingOnCustomerName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
