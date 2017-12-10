@@ -195,6 +195,14 @@
     <Compile Include="Migrations\201712102040016_GetEverythingUpToDate.Designer.cs">
       <DependentUpon>201712102040016_GetEverythingUpToDate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712102048058_AddBirthdateToCustomers.cs" />
+    <Compile Include="Migrations\201712102048058_AddBirthdateToCustomers.Designer.cs">
+      <DependentUpon>201712102048058_AddBirthdateToCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712102103099_FixCustomerBirthdate.cs" />
+    <Compile Include="Migrations\201712102103099_FixCustomerBirthdate.Designer.cs">
+      <DependentUpon>201712102103099_FixCustomerBirthdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -290,6 +298,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712102040016_GetEverythingUpToDate.resx">
       <DependentUpon>201712102040016_GetEverythingUpToDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712102048058_AddBirthdateToCustomers.resx">
+      <DependentUpon>201712102048058_AddBirthdateToCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712102103099_FixCustomerBirthdate.resx">
+      <DependentUpon>201712102103099_FixCustomerBirthdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

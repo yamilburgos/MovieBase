@@ -23,14 +23,16 @@ namespace MovieBase.Controllers {
             // Calls Index.cshtml in Views/Customers to display a list of customers.
             // Gets all customers from the database. A DBSet that has been defined.
             // ToList() helps executes the query for this property. Include() will
-            // also past the MembershipType object/property to view as well.
+            // also past the MembershipType property to view as well.
             return View(_context.Customers.Include(c => c.MembershipType).ToList());
         }
 
         // Called when going to Customers/Details/id
         public ActionResult Details(int id) {
             // A query that returns database customer(s) with matching ids (if possible).
-            Customer customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            // Include() will also past the MembershipType property to view as well.
+            Customer customer = _context.Customers.Include(c => c.MembershipType).
+                SingleOrDefault(c => c.Id == id);
 
             // If this customer cannot be found, simply return this error page.
             if (customer == null) return HttpNotFound();
