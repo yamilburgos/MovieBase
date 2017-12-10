@@ -18,8 +18,10 @@ namespace MovieBase.Models {
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser> {
-        // Represents the customer table in the database.
+        // Represents the customer & movie table in the database.
+        // This is done in order to included them for migrations.
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Movie> Movies { get; set; }
 
         public ApplicationDbContext() : base("DefaultConnection", throwIfV1Schema: false) {}
 

@@ -1,10 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using System.Web.Mvc;
+using System.Collections.Generic;
 using MovieBase.Models;
 using MovieBase.ViewModels;
 
 namespace MovieBase.Controllers {
     public class MoviesController : Controller {
+        // Used to access the database for this class.
+        private ApplicationDbContext _context;
+
+        public MoviesController() {
+            // Initialized upon calling this controller during run-time.
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing) {
+            // Created in order to properly dispose this object.
+            _context.Dispose();
+        }
 
         // Called when going to Movies/Random
         public ActionResult Random() {
@@ -35,14 +48,21 @@ namespace MovieBase.Controllers {
 
         // Called when going to Movies
         public ActionResult Index() {
-            List<Movie> movies = new List<Movie> {
-                // Creates new movie instances to be loaded up.
-                new Movie { Id = 1, Name = "Shrek" },
-                new Movie { Id = 2, Name = "Wall-e" }
-            };
+            // Calls Index.cshtml in Views/Movies to display a list of movies. Gets
+            // all movies from the database. A DBSet that has been defined. ToList()
+            // helps executes the query for this property.
+            return View(_context.Movies.ToList());
+        }
 
-            // Calls Index.cshtml in Views/Movies for display with a list of movies.
-            return View(movies);    
+        // Called when going to Movies/Details/id
+        public ActionResult Details(int id) {
+            // A query that returns database movies(s) with matching ids (if possible).
+            Movie movie = _context.Movies.SingleOrDefault(c => c.Id == id);
+
+            // If this movie cannot be found, simply return this error page.
+            if (movie == null) return HttpNotFound();
+            // Calls Details.cshtml in Views/Movies to display a single movie.
+            return View(movie);
         }
 
         // Called when going to Movies/released/year/month
