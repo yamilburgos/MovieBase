@@ -18,6 +18,12 @@ namespace MovieBase.Controllers {
             _context.Dispose();
         }
 
+        // Called when going to Customers/New
+        public ActionResult New() {
+            // Calls New.cshtml in Views/Customers to display a customer form.
+            return View();
+        }
+
         // Called when going to Customers
         public ViewResult Index() {
             // Calls Index.cshtml in Views/Customers to display a list of customers.
