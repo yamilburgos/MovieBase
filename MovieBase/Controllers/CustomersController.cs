@@ -30,6 +30,12 @@ namespace MovieBase.Controllers {
             return View(viewModel);
         }
 
+        // Posts an action when going to Customers/Create
+        [HttpPost] public ActionResult Create(Customer customer) {
+            // Called when the Save Button gets pressed in New page.
+            return View();
+        }
+
         // Called when going to Customers
         public ViewResult Index() {
             // Calls Index.cshtml in Views/Customers to display a list of customers.
