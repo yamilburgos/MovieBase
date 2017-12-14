@@ -21,19 +21,24 @@ namespace MovieBase.Controllers {
 
         // Called when going to Customers/New
         public ActionResult New() {
-            NewCustomerViewModel viewModel = new NewCustomerViewModel {
+            CustomerFormViewModel viewModel = new CustomerFormViewModel {
                 // A query to contain all membership types available via a list.
                 MembershipTypes = _context.MembershipTypes.ToList()
             };
 
-            // Calls New.cshtml in Views/Customers to display a customer form.
-            return View(viewModel);
+            // Specifies CustomerForm's View page to visit. Also passes viewModel data.
+            return View("CustomerForm", viewModel);
         }
 
         // Posts an action when going to Customers/Create
         [HttpPost] public ActionResult Create(Customer customer) {
-            // Called when the Save Button gets pressed in New page.
-            return View();
+            // Added to the dbContext memory, not the database!
+            _context.Customers.Add(customer);
+            // This will save the changes to the database.
+            _context.SaveChanges();
+
+            // Redirects the user back to the list of customers (to Index).
+            return RedirectToAction("Index", "Customers");
         }
 
         // Called when going to Customers
@@ -47,7 +52,7 @@ namespace MovieBase.Controllers {
 
         // Called when going to Customers/Details/id
         public ActionResult Details(int id) {
-            // A query that returns database customer(s) with matching ids (if possible).
+            // A query that returns database customer with matching ids (if possible).
             // Include() will also past the MembershipType property to view as well.
             Customer customer = _context.Customers.Include(c => c.MembershipType).
                 SingleOrDefault(c => c.Id == id);
@@ -56,6 +61,23 @@ namespace MovieBase.Controllers {
             if (customer == null) return HttpNotFound();
             // Calls Details.cshtml in Views/Customers to display a single customer.
             return View(customer);
+        }
+
+        public ActionResult Edit(int id) {
+            // A query that returns database customer with matching ids (if possible).
+            Customer customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            // Checks to see if this customer exists. If not, return error page.
+            if (customer == null) return HttpNotFound();
+
+            var viewModel = new CustomerFormViewModel {
+                // Takes the result given from the above query to use for the view.
+                Customer = customer,
+                // A query to contain all membership types available via a list.
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+
+            // Specifies CustomerForm's View page to visit. Also passes viewModel data.
+            return View("CustomerForm", viewModel);
         }
     }
 }
