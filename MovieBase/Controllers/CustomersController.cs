@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using MovieBase.Models;
+using MovieBase.ViewModels;
 
 namespace MovieBase.Controllers {
     public class CustomersController : Controller {
@@ -20,8 +21,13 @@ namespace MovieBase.Controllers {
 
         // Called when going to Customers/New
         public ActionResult New() {
+            NewCustomerViewModel viewModel = new NewCustomerViewModel {
+                // A query to contain all membership types available via a list.
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+
             // Calls New.cshtml in Views/Customers to display a customer form.
-            return View();
+            return View(viewModel);
         }
 
         // Called when going to Customers
