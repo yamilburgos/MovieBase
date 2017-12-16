@@ -30,7 +30,7 @@ namespace MovieBase.Controllers {
             return View("CustomerForm", viewModel);
         }
 
-        // Posts an action when going to Customers/Create
+        // Posts an action when going to Customers/Save
         [HttpPost] public ActionResult Save(Customer customer) {
             if (customer.Id == 0) {
                 // Done for new customers who yet to have an id.
@@ -41,7 +41,7 @@ namespace MovieBase.Controllers {
             else {
                 // First query the database to find the customer with this existing id.
                 Customer customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
-                // Then pass along the cusomter's new information to this chosen variant.
+                // Then pass along the customer's new information to this chosen variant.
                 customerInDb.Name = customer.Name;
                 customerInDb.Birthdate = customer.Birthdate;
                 customerInDb.MembershipTypeId = customer.MembershipTypeId;
@@ -50,7 +50,6 @@ namespace MovieBase.Controllers {
 
             // This will save the changes to the database.
             _context.SaveChanges();
-
             // Redirects the user back to the list of customers (to Index).
             return RedirectToAction("Index", "Customers");
         }
@@ -83,7 +82,7 @@ namespace MovieBase.Controllers {
             // Checks to see if this customer exists. If not, return error page.
             if (customer == null) return HttpNotFound();
 
-            var viewModel = new CustomerFormViewModel {
+            CustomerFormViewModel viewModel = new CustomerFormViewModel {
                 // Takes the result given from the above query to use for the view.
                 Customer = customer,
                 // A query to contain all membership types available via a list.
