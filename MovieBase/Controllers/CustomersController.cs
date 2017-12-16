@@ -31,9 +31,23 @@ namespace MovieBase.Controllers {
         }
 
         // Posts an action when going to Customers/Create
-        [HttpPost] public ActionResult Create(Customer customer) {
-            // Added to the dbContext memory, not the database!
-            _context.Customers.Add(customer);
+        [HttpPost] public ActionResult Save(Customer customer) {
+            if (customer.Id == 0) {
+                // Done for new customers who yet to have an id.
+                // Added to the dbContext memory, not the database!
+                _context.Customers.Add(customer);
+            }
+
+            else {
+                // First query the database to find the customer with this existing id.
+                Customer customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+                // Then pass along the cusomter's new information to this chosen variant.
+                customerInDb.Name = customer.Name;
+                customerInDb.Birthdate = customer.Birthdate;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+                customerInDb.IsSubscribed = customer.IsSubscribed;
+            }
+
             // This will save the changes to the database.
             _context.SaveChanges();
 
