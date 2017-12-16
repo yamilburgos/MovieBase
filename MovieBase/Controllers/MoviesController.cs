@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using System.Collections.Generic;
@@ -18,6 +19,20 @@ namespace MovieBase.Controllers {
         protected override void Dispose(bool disposing) {
             // Created in order to properly dispose this object.
             _context.Dispose();
+        }
+
+        // Called when going to Movies/New
+        public ActionResult New() {
+            // A query that returns all movie genres (Id and Name).
+            List<Genre> genres = _context.Genres.ToList();
+            
+            MovieFormViewModel viewModel = new MovieFormViewModel {
+                // A query to contain all genres available via a list.
+                Genres = genres
+            };
+
+            // Specifies MovieForm's View page to visit. Also passes viewModel data.
+            return View("MovieForm", viewModel);
         }
 
         // Called when going to Movies/Random
@@ -43,16 +58,54 @@ namespace MovieBase.Controllers {
 
         // Called when going to Movies/Edit/id
         public ActionResult Edit(int id) {
-            // Displays a blank screen displaing id= and a number.
-            return Content("id=" + id);
+            // A query that returns database movie with matching ids (if possible).
+            Movie movie = _context.Movies.SingleOrDefault(c => c.Id == id);
+            // Checks to see if this customer exists. If not, return error page.
+            if (movie == null) return HttpNotFound();
+
+            MovieFormViewModel viewModel = new MovieFormViewModel {
+                // Takes the result given from the above query to use for the view.
+                Movie = movie,
+                // A query to contain all genres available via a list.
+                Genres = _context.Genres.ToList()
+            };
+
+            // Specifies MovieForm's View page to visit. Also passes viewModel data.
+            return View("MovieForm", viewModel);
+        }
+
+        // Posts an action when going to Movies/Save
+        [HttpPost] public ActionResult Save(Movie movie) {
+            if (movie.Id == 0) {
+                // Done for new movies who yet to have an id.
+                // Added to the dbContext memory, not the database!
+                movie.DateAdded = DateTime.Now;
+                _context.Movies.Add(movie);
+            }
+
+            else {
+                // First query the database to find the movie with this existing id.
+                Movie movieInDb = _context.Movies.Single(m => m.Id == movie.Id);
+                // Then pass along the movie's new information to this chosen variant.
+                movieInDb.Name = movie.Name;
+                movieInDb.GenreId = movie.GenreId;
+                movieInDb.NumberInStock = movie.NumberInStock;
+                movieInDb.ReleaseDate = movie.ReleaseDate;
+            }
+
+            // This will save the changes to the database.
+            _context.SaveChanges();
+            // Redirects the user back to the list of movies (to Index).
+            return RedirectToAction("Index", "Movies");
         }
 
         // Called when going to Movies
         public ActionResult Index() {
             // Calls Index.cshtml in Views/Movies to display a list of movies. Gets
             // all movies from the database. A DBSet that has been defined. ToList()
-            // helps executes the query for this property.
-            return View(_context.Movies.ToList());
+            // helps executes the query for this property. Include() will also past
+            // the Genre property to view as well.
+            return View(_context.Movies.Include(m => m.Genre).ToList());
         }
 
         // Called when going to Movies/Details/id

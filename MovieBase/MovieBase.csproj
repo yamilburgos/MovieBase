@@ -203,12 +203,13 @@
     <Compile Include="Migrations\201712102103099_FixCustomerBirthdate.Designer.cs">
       <DependentUpon>201712102103099_FixCustomerBirthdate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201712102153188_CreateNewMovieDatabase.cs" />
-    <Compile Include="Migrations\201712102153188_CreateNewMovieDatabase.Designer.cs">
-      <DependentUpon>201712102153188_CreateNewMovieDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\201712162044095_ChangeMovieTableAgain.cs" />
+    <Compile Include="Migrations\201712162044095_ChangeMovieTableAgain.Designer.cs">
+      <DependentUpon>201712162044095_ChangeMovieTableAgain.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Model.cs" />
@@ -314,8 +315,8 @@
     <EmbeddedResource Include="Migrations\201712102103099_FixCustomerBirthdate.resx">
       <DependentUpon>201712102103099_FixCustomerBirthdate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712102153188_CreateNewMovieDatabase.resx">
-      <DependentUpon>201712102153188_CreateNewMovieDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712162044095_ChangeMovieTableAgain.resx">
+      <DependentUpon>201712162044095_ChangeMovieTableAgain.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

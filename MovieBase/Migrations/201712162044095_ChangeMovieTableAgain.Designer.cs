@@ -7,13 +7,13 @@ namespace MovieBase.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class CreateNewMovieDatabase : IMigrationMetadata
+    public sealed partial class ChangeMovieTableAgain : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateNewMovieDatabase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangeMovieTableAgain));
         
         string IMigrationMetadata.Id
         {
-            get { return "201712102153188_CreateNewMovieDatabase"; }
+            get { return "201712162044095_ChangeMovieTableAgain"; }
         }
         
         string IMigrationMetadata.Source

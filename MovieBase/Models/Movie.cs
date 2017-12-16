@@ -8,9 +8,18 @@ namespace MovieBase.Models {
         public int Id { get; set; }
         // Data Annotations that adds properties to the database.
         [Required] public string Name { get; set; }
-        [Required] public string Genre { get; set; }
-        [Required] public DateTime ReleaseDate { get; set; }
+
+        public Genre Genre { get; set; }
+
+        [Display(Name = "Genre")] [Required]
+        public byte GenreId { get; set; }
+
+        [Required] [Display(Name = "Release Date")]
+        public DateTime ReleaseDate { get; set; }
+
         [Required] public DateTime DateAdded { get; set; }
-        [Required] public int NumberInStock { get; set; }
+
+        [Required] [Display(Name = "Number in Stock")]
+        public int NumberInStock { get; set; }
     }
 }
