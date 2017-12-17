@@ -32,6 +32,21 @@ namespace MovieBase.Controllers {
 
         // Posts an action when going to Customers/Save
         [HttpPost] public ActionResult Save(Customer customer) {
+
+            // Changes the flow of the program by using validation
+            // data. Still return the same view if it isn't valid.
+            if (!ModelState.IsValid) {
+                CustomerFormViewModel viewModel = new CustomerFormViewModel {
+                    // Takes the result given from the above query to use for the view.
+                    Customer = customer,
+                    // A query to contain all membership types available via a list.
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+
+                // Still return CustomerForm's View page to visit. Also passes viewModel data.
+                return View("CustomerForm", viewModel);
+            }
+
             if (customer.Id == 0) {
                 // Done for new customers who yet to have an id.
                 // Added to the dbContext memory, not the database!
