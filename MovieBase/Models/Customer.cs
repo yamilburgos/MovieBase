@@ -14,7 +14,7 @@ namespace MovieBase.Models {
         [Display(Name = "Membership Type")]
         public byte MembershipTypeId { get; set; }
 
-        [Display(Name = "Date of Birth")]
+        [Min18YearsIfMember] [Display(Name = "Date of Birth")]
         public DateTime? Birthdate { get; set; }
     }
 }
