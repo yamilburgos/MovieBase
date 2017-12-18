@@ -22,6 +22,8 @@ namespace MovieBase.Controllers {
         // Called when going to Customers/New
         public ActionResult New() {
             CustomerFormViewModel viewModel = new CustomerFormViewModel {
+                // Creates a new customer for the view at this time.
+                Customer = new Customer(),
                 // A query to contain all membership types available via a list.
                 MembershipTypes = _context.MembershipTypes.ToList()
             };

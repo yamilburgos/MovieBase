@@ -10,7 +10,8 @@ namespace MovieBase.Models {
             Customer customer = (Customer)validationContext.ObjectInstance;
 
             // Checks the selected membership type for early validation.
-            if (customer.MembershipTypeId <= 1)
+            if (customer.MembershipTypeId == (byte)MembershipType.Membership.None ||
+                customer.MembershipTypeId == (byte)MembershipType.Membership.PayAsYouGo)
                 return ValidationResult.Success;
             
             // Checks for any dates provided before going further.
