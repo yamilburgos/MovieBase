@@ -207,6 +207,10 @@
     <Compile Include="Migrations\201712162044095_ChangeMovieTableAgain.Designer.cs">
       <DependentUpon>201712162044095_ChangeMovieTableAgain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712232305155_UpdatedMovieProperties.cs" />
+    <Compile Include="Migrations\201712232305155_UpdatedMovieProperties.Designer.cs">
+      <DependentUpon>201712232305155_UpdatedMovieProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -318,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712162044095_ChangeMovieTableAgain.resx">
       <DependentUpon>201712162044095_ChangeMovieTableAgain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712232305155_UpdatedMovieProperties.resx">
+      <DependentUpon>201712232305155_UpdatedMovieProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

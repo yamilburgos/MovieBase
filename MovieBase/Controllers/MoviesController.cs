@@ -27,6 +27,8 @@ namespace MovieBase.Controllers {
             List<Genre> genres = _context.Genres.ToList();
             
             MovieFormViewModel viewModel = new MovieFormViewModel {
+                // Creates a new movie for the view at this time.
+                Movie = new Movie(),
                 // A query to contain all genres available via a list.
                 Genres = genres
             };
@@ -75,7 +77,22 @@ namespace MovieBase.Controllers {
         }
 
         // Posts an action when going to Movies/Save
-        [HttpPost] public ActionResult Save(Movie movie) {
+        [HttpPost] [ValidateAntiForgeryToken]
+        public ActionResult Save(Movie movie) {
+            // Changes the flow of the program by using validation
+            // data. Still return the same view if it isn't valid.
+            if (!ModelState.IsValid) {
+                MovieFormViewModel viewModel = new MovieFormViewModel {
+                    // Takes the result given from the above query to use for the view.
+                    Movie = movie,
+                    // A query to contain all genres available via a list.
+                    Genres = _context.Genres.ToList()
+                };
+
+                // Still return MovieForm's View page to visit. Also passes viewModel data.
+                return View("MovieForm", viewModel);
+            }
+
             if (movie.Id == 0) {
                 // Done for new movies who yet to have an id.
                 // Added to the dbContext memory, not the database!

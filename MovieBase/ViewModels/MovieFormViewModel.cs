@@ -10,12 +10,8 @@ namespace MovieBase.ViewModels {
         public Movie Movie { get; set; }
 
         public string Title {
-             get {
-                 if (Movie != null && Movie.Id != 0)
-                    return "Edit Movie";
-                 else
-                    return "New Movie";
-             }
+            // Displays the proper title of this page depending on Movie.
+            get { return Movie.Id != null ? "Edit Movie" : "New Movie"; }
         }
     }
 }
