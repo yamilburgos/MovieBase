@@ -33,8 +33,8 @@ namespace MovieBase.Controllers {
         }
 
         // Posts an action when going to Customers/Save
-        [HttpPost] public ActionResult Save(Customer customer) {
-
+        [HttpPost] [ValidateAntiForgeryToken]
+        public ActionResult Save(Customer customer) {
             // Changes the flow of the program by using validation
             // data. Still return the same view if it isn't valid.
             if (!ModelState.IsValid) {
