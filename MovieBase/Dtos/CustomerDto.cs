@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using MovieBase.Models;
 
 namespace MovieBase.Dtos {
 
@@ -18,7 +17,7 @@ namespace MovieBase.Dtos {
 
         public byte MembershipTypeId { get; set; }
 
-        [Min18YearsIfMember]
+        //[Min18YearsIfMember]
         public DateTime? Birthdate { get; set; }
     }
 }
