@@ -1,7 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using MovieBase.Models;
 
-namespace MovieBase.Models {
+namespace MovieBase.Dtos {
 
     public class CustomerDto {
         // Properties used when presenting states.
