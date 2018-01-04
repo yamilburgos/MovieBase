@@ -7,8 +7,13 @@ namespace MovieBase.App_Start {
 
         public MappingProfile() {
             // Create a Mapping Configuration to swap values between 2 types.
+            // Domain to Dto
             Mapper.CreateMap<Customer, CustomerDto>();
-            Mapper.CreateMap<CustomerDto, Customer>();
+            Mapper.CreateMap<Movie, MovieDto>();
+
+            // Dto to Domain
+            Mapper.CreateMap<CustomerDto, Customer>().ForMember(c => c.Id, opt => opt.Ignore());
+            Mapper.CreateMap<MovieDto, Movie>().ForMember(c => c.Id, opt => opt.Ignore());
         }
     }
 }

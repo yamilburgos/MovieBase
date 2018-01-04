@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Web.Http;
 using AutoMapper;
 using MovieBase.Dtos;
@@ -18,9 +16,11 @@ namespace MovieBase.Controllers.API {
         }
 
         // GET /api/customers
-        public IEnumerable<CustomerDto> GetCustomers() {
+        public IHttpActionResult GetCustomers() {
             // Returns a list of objects (customers) & uses Mapper to utilize CustomerDto.
-            return _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
+            var customerDto = _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
+            // Then return the customer result from the Mapper method.
+            return Ok(customerDto);
         }
 
         // GET /api/customers/1
@@ -54,31 +54,33 @@ namespace MovieBase.Controllers.API {
 
         // PUT /api/customers/1
         [HttpPut]
-        public void UpdateCustomer(int id, CustomerDto customerDto) {
+        public IHttpActionResult UpdateCustomer(int id, CustomerDto customerDto) {
             // Changes the program's flow via using validation data or return an error.
-            if (!ModelState.IsValid) throw new HttpResponseException(HttpStatusCode.BadRequest);
+            if (!ModelState.IsValid) return BadRequest();
             // Returns one object (customer) by using a matching id.
             Customer customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
             // If there's no customer, return the standard not found http response.
-            if (customerInDb == null) throw new HttpResponseException(HttpStatusCode.NotFound);
+            if (customerInDb == null) return NotFound();
 
             // Maps the customer Dto variant to the customer's database variant.
             Mapper.Map(customerDto, customerInDb);
             // Saves the changes to the database.
             _context.SaveChanges();
+            return Ok();
         }
 
         // DELETE /api/customers/1
         [HttpDelete]
-        public void DeleteCustomer(int id) {
+        public IHttpActionResult DeleteCustomer(int id) {
             // Returns one object (customer) by using a matching id.
             Customer customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
             // If there's no customer, return the standard not found http response.
-            if (customerInDb == null) throw new HttpResponseException(HttpStatusCode.NotFound);
+            if (customerInDb == null) return NotFound();
 
             // Delete the customer & saves the changes to the database.
             _context.Customers.Remove(customerInDb);
             _context.SaveChanges();
+            return Ok();
         }
     }
 }
