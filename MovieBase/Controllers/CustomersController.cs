@@ -74,10 +74,7 @@ namespace MovieBase.Controllers {
         // Called when going to Customers
         public ViewResult Index() {
             // Calls Index.cshtml in Views/Customers to display a list of customers.
-            // Gets all customers from the database. A DBSet that has been defined.
-            // ToList() helps executes the query for this property. Include() will
-            // also past the MembershipType property to view as well.
-            return View(_context.Customers.Include(c => c.MembershipType).ToList());
+            return View();
         }
 
         // Called when going to Customers/Details/id
