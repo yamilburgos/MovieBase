@@ -17,6 +17,8 @@ namespace MovieBase.Dtos {
 
         public byte MembershipTypeId { get; set; }
 
+        public MembershipTypeDto MembershipType { get; set; }
+
         //[Min18YearsIfMember]
         public DateTime? Birthdate { get; set; }
     }

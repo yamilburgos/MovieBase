@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Http;
+using System.Data.Entity;
 using AutoMapper;
 using MovieBase.Dtos;
 using MovieBase.Models;
@@ -18,7 +19,8 @@ namespace MovieBase.Controllers.API {
         // GET /api/customers
         public IHttpActionResult GetCustomers() {
             // Returns a list of objects (customers) & uses Mapper to utilize CustomerDto.
-            var customerDto = _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
+            var customerDto = _context.Customers.Include(c => c.MembershipType)
+                .ToList().Select(Mapper.Map<Customer, CustomerDto>);
             // Then return the customer result from the Mapper method.
             return Ok(customerDto);
         }
