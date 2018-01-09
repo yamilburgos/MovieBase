@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Http;
+using System.Data.Entity;
 using AutoMapper;
 using MovieBase.Dtos;
 using MovieBase.Models;
@@ -18,7 +19,8 @@ namespace Vidly.Controllers.Api {
         // GET /api/movies
         public IHttpActionResult GetMovies() {
             // Returns a list of objects (movies) & uses Mapper to utilize MovieDto.
-            var movieDto = _context.Movies.ToList().Select(Mapper.Map<Movie, MovieDto>);
+            var movieDto = _context.Movies.Include(m => m.Genre)
+                .ToList().Select(Mapper.Map<Movie, MovieDto>);
             // Then return the movie result from the Mapper method.
             return Ok(movieDto);
         }

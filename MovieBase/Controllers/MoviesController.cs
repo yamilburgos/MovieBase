@@ -93,7 +93,7 @@ namespace MovieBase.Controllers {
                 return View("MovieForm", viewModel);
             }
 
-            if (movie.Id == 0) {
+            if (movie.Id == 0 || movie.Id == null) {
                 // Done for new movies who yet to have an id.
                 // Added to the dbContext memory, not the database!
                 movie.DateAdded = DateTime.Now;
@@ -118,11 +118,8 @@ namespace MovieBase.Controllers {
 
         // Called when going to Movies
         public ActionResult Index() {
-            // Calls Index.cshtml in Views/Movies to display a list of movies. Gets
-            // all movies from the database. A DBSet that has been defined. ToList()
-            // helps executes the query for this property. Include() will also past
-            // the Genre property to view as well.
-            return View(_context.Movies.Include(m => m.Genre).ToList());
+            // Calls Index.cshtml in Views/Movies to display a list of movies.
+            return View();
         }
 
         // Called when going to Movies/Details/id
