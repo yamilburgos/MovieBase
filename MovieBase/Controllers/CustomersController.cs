@@ -20,6 +20,7 @@ namespace MovieBase.Controllers {
         }
 
         // Called when going to Customers/New
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New() {
             CustomerFormViewModel viewModel = new CustomerFormViewModel {
                 // Creates a new customer for the view at this time.
@@ -73,8 +74,10 @@ namespace MovieBase.Controllers {
 
         // Called when going to Customers
         public ViewResult Index() {
-            // Calls Index.cshtml in Views/Customers to display a list of customers.
-            return View();
+            // Checks the user's role with AspNewUserRoles. Then display
+            // a list of customers with different menu options available.
+            if (User.IsInRole(RoleName.CanManageMovies)) return View("List");
+            else return View("ReadOnlyList");
         }
 
         // Called when going to Customers/Details/id
