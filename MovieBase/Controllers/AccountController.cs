@@ -125,7 +125,11 @@ namespace MovieBase.Controllers {
          [ValidateAntiForgeryToken]
          public async Task<ActionResult> Register(RegisterViewModel model) {
              if (ModelState.IsValid) {
-                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                 var user = new ApplicationUser {
+                     UserName = model.Email,
+                     Email = model.Email,
+                     DrivingLicense = model.DrivingLicense
+                 };
                  var result = await UserManager.CreateAsync(user, model.Password);
                  if (result.Succeeded) {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);

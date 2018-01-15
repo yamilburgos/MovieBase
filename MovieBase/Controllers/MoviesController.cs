@@ -22,6 +22,7 @@ namespace MovieBase.Controllers {
         }
 
         // Called when going to Movies/New
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New() {
             // A query that returns all movie genres (Id and Name).
             List<Genre> genres = _context.Genres.ToList();
@@ -118,8 +119,10 @@ namespace MovieBase.Controllers {
 
         // Called when going to Movies
         public ActionResult Index() {
-            // Calls Index.cshtml in Views/Movies to display a list of movies.
-            return View();
+            // Checks the user's role with AspNewUserRoles. Then display
+            // a list of movies with different menu options available.
+            if (User.IsInRole(RoleName.CanManageMovies)) return View("List");
+            else return View("ReadOnlyList");
         }
 
         // Called when going to Movies/Details/id
