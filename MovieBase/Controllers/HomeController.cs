@@ -1,7 +1,7 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace MovieBase.Controllers {
+    [AllowAnonymous]
     public class HomeController : Controller {
 
         public ActionResult Index() {
