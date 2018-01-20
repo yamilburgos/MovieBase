@@ -225,17 +225,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201801151741431_SeedUsers.cs" />
-    <Compile Include="Migrations\201801151741431_SeedUsers.Designer.cs">
-      <DependentUpon>201801151741431_SeedUsers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801151810155_AddDrivingLicense.cs" />
-    <Compile Include="Migrations\201801151810155_AddDrivingLicense.Designer.cs">
-      <DependentUpon>201801151810155_AddDrivingLicense.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801151912421_AddPhoneProperty.cs" />
-    <Compile Include="Migrations\201801151912421_AddPhoneProperty.Designer.cs">
-      <DependentUpon>201801151912421_AddPhoneProperty.cs</DependentUpon>
+    <Compile Include="Migrations\201801201912002_newMovieFields.cs" />
+    <Compile Include="Migrations\201801201912002_newMovieFields.Designer.cs">
+      <DependentUpon>201801201912002_newMovieFields.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -507,14 +499,8 @@
     <Content Include="Views\Customers\ReadOnlyList.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201801151741431_SeedUsers.resx">
-      <DependentUpon>201801151741431_SeedUsers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801151810155_AddDrivingLicense.resx">
-      <DependentUpon>201801151810155_AddDrivingLicense.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801151912421_AddPhoneProperty.resx">
-      <DependentUpon>201801151912421_AddPhoneProperty.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201801201912002_newMovieFields.resx">
+      <DependentUpon>201801201912002_newMovieFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

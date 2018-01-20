@@ -18,13 +18,19 @@ namespace MovieBase.Controllers.API {
         [HttpPost]
         // Creates a new object for movies when called.
         public IHttpActionResult CreateNewRentals(NewRentalDto newRental) {
-            // Obtain a single customer and their list of movies they selected (via ids).
+            // Obtain a single customer based on their ids (if they exist).
             Customer customer = _context.Customers.Single(
                 c => c.Id == newRental.CustomerId);
+            // Obtain a list of movies based on the Customer's selection.
             List<Movie> movies = _context.Movies.Where(
                 m => newRental.MovieIds.Contains(m.Id)).ToList();
 
             foreach (Movie movie in movies) {
+                // Checks to see if the Movie's availability is sufficient enough.
+                if (movie.NumberAvailable <= 0) return BadRequest("Movie is not available.");
+                // Decrease the amount available due to it being rented out.
+                movie.NumberAvailable--;
+
                 // For every movie, create a new rental with the following info.
                 Rental rental = new Rental {
                     Customer = customer,

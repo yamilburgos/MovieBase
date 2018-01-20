@@ -7,13 +7,13 @@ namespace MovieBase.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class SeedUsers : IMigrationMetadata
+    public sealed partial class newMovieFields : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SeedUsers));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(newMovieFields));
         
         string IMigrationMetadata.Id
         {
-            get { return "201801151741431_SeedUsers"; }
+            get { return "201801201912002_newMovieFields"; }
         }
         
         string IMigrationMetadata.Source
