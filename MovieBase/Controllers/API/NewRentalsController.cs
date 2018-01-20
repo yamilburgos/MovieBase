@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Http;
-using System.Data.Entity;
-using AutoMapper;
 using MovieBase.Dtos;
 using MovieBase.Models;
 
