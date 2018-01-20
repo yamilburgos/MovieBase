@@ -6,7 +6,7 @@ using AutoMapper;
 using MovieBase.Dtos;
 using MovieBase.Models;
 
-namespace Vidly.Controllers.Api {
+namespace MovieBase.Controllers.Api {
      public class MoviesController : ApiController {
         // Used to access the database for this class.
         private ApplicationDbContext _context;
