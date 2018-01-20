@@ -16,6 +16,6 @@ namespace MovieBase.Models {
         public Movie Movie { get; set; }
 
         public DateTime DateRented { get; set; }
-        public DateTime DateReturned { get; set; }
+        public DateTime? DateReturned { get; set; }
     }
 }

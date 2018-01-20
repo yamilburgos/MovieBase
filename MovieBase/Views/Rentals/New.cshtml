@@ -4,7 +4,7 @@
 
 <h2>New Rental Form</h2>
 
-<form>
+<form id="newRental">
     <div class="form-group">
         <label>Customer</label>
         <div class="tt-container">
@@ -32,7 +32,7 @@
     <script>
         $(document).ready(function() {
             var vm = {
-                movieIds: []
+                MovieIds: []
             };
 
             var customers = new Bloodhound({
@@ -52,7 +52,16 @@
                 display: 'name',
                 source: customers
             }).on("typeahead:select", function(e, customer) {
-                vm.customerId = customer.id;
+                vm.CustomerId = customer.id;
+            });
+
+            var movies = new Bloodhound({
+                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                 queryTokenizer: Bloodhound.tokenizers.whitespace,
+                 remote: {
+                     url: '/api/movies?query=%QUERY',
+                     wildcard: '%QUERY'
+                 }
             });
 
             $('#movie').typeahead({
@@ -65,8 +74,22 @@
             }).on("typeahead:select", function(e, movie) {
                $("#movies").append("<li class='list-group-item'>" + movie.name + "</li>");
                $("#movie").typeahead("val", "");
-               vm.movieIds.push(movie.id);
+               vm.MovieIds.push(movie.id);
             });
+
+            $("#newRental").submit(function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: "/api/newRentals",
+                    method: "post",
+                    data: vm
+                }).done(function() {
+                    console.log("done");
+                }).fail(function() {
+
+                })
+            })
         });
     </script>    
 }

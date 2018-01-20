@@ -17,12 +17,16 @@ namespace MovieBase.Controllers.Api {
         }
 
         // GET /api/movies
-        public IHttpActionResult GetMovies() {
+        public IHttpActionResult GetMovies(string query = null) {
             // Returns a list of objects (movies) & uses Mapper to utilize MovieDto.
-            var movieDto = _context.Movies.Include(m => m.Genre)
-                .ToList().Select(Mapper.Map<Movie, MovieDto>);
+            var moviesQuery = _context.Movies.Include(m => m.Genre).Where(m => m.NumberAvailable > 0);
+            // Checks to see if this query is valid before looking it up in the database.
+            if (!String.IsNullOrWhiteSpace(query)) moviesQuery =
+                    moviesQuery.Where(m => m.Name.Contains(query));
+            // Then select the proper movies based on the name provided.
+            var movieDtos = moviesQuery.ToList().Select(Mapper.Map<Movie, MovieDto>);
             // Then return the movie result from the Mapper method.
-            return Ok(movieDto);
+            return Ok(movieDtos);
         }
 
         // GET /api/movies/1
