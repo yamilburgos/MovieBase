@@ -94,7 +94,7 @@ namespace MovieBase.Controllers {
                 return View("MovieForm", viewModel);
             }
 
-            if (movie.Id == 0 || movie.Id == null) {
+            if (movie.Id == 0) {
                 // Done for new movies who yet to have an id.
                 // Added to the dbContext memory, not the database!
                 movie.DateAdded = DateTime.Now;

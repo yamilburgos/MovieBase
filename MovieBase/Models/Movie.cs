@@ -5,7 +5,7 @@ namespace MovieBase.Models {
 
     public class Movie {
         // Properties used when presenting states.
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         // Data Annotations that adds properties to the database.
 
