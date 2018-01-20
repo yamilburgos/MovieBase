@@ -17,12 +17,16 @@ namespace MovieBase.Controllers.API {
         }
 
         // GET /api/customers
-        public IHttpActionResult GetCustomers() {
-            // Returns a list of objects (customers) & uses Mapper to utilize CustomerDto.
-            var customerDto = _context.Customers.Include(c => c.MembershipType)
-                .ToList().Select(Mapper.Map<Customer, CustomerDto>);
+        public IHttpActionResult GetCustomers(string query = null) {
+            // Returns a list of objects (customers) & uses Mapper to utilize CustomerDtos.
+            var customersQuery = _context.Customers.Include(c => c.MembershipType);
+            // Checks to see if this query is valid before looking it up in the database.
+            if (!String.IsNullOrWhiteSpace(query)) customersQuery = 
+                    customersQuery.Where(c => c.Name.Contains(query));
+            // Then select the proper customers based on the name provided.
+            var customerDtos = customersQuery.ToList().Select(Mapper.Map<Customer, CustomerDto>);
             // Then return the customer result from the Mapper method.
-            return Ok(customerDto);
+            return Ok(customerDtos);
         }
 
         // GET /api/customers/1
