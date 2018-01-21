@@ -245,6 +245,7 @@
     <Compile Include="ViewModels\RandomMovieViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404.html" />
     <Content Include="App_Data\aspnet-HaveYouSeenMe-20131125091100.mdf" />
     <Content Include="App_Data\aspnet-HaveYouSeenMe-20131125091100_log.ldf">
       <DependentUpon>aspnet-HaveYouSeenMe-20131125091100.mdf</DependentUpon>
