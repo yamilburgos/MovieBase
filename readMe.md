@@ -1,5 +1,5 @@
 # Movie Base
-> A browser application using ASP.NET to aid registered users handling their movie rentals.
+> A browser application using ASP.NET for registered customers to rent out available movies.
 
 	https://yamilburgos.github.io/MovieBase
 
